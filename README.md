@@ -1,45 +1,38 @@
-# frontend-slides
+# mimocode-skills
 
-MiMo Desktop / MiMoCode agent skill for creating zero-dependency, animation-rich HTML presentations (1920×1080 fixed stage), with optional PPTX extraction, PDF export, and simple static deploy.
+MiMo Desktop / MiMoCode agent skills monorepo.
+
+## Skills
+
+| Skill | Directory | What it does |
+| --- | --- | --- |
+| **frontend-slides** | [`frontend-slides/`](frontend-slides/) | Zero-dependency, animation-rich HTML presentations (fixed 1920×1080 stage), presenter chrome, PPTX extract / PDF export / deploy |
+| **html-deck-to-pptx** | [`html-deck-to-pptx/`](html-deck-to-pptx/) | Replicate an HTML deck’s layout & visual system as a matching `.pptx` |
+
+Typical pipeline: build the deck with `frontend-slides`, then convert that HTML to PowerPoint with `html-deck-to-pptx`.
 
 ## Install
 
-Copy this folder into one of:
+Copy each skill folder into a skills root, keeping the directory name as the skill ID:
 
-- `<project>/.agents/skills/frontend-slides/`
-- `<project>/.mimocode/skills/frontend-slides/`
-- or your user-level skills directory
+```text
+# project-level
+<project>/.mimocode/skills/frontend-slides/
+<project>/.mimocode/skills/html-deck-to-pptx/
 
-Then invoke via the skill system (`/frontend-slides` or natural language such as “做一份 HTML 演示文稿”).
+# or user-level
+~/.config/mimocode/skills/frontend-slides/
+~/.config/mimocode/skills/html-deck-to-pptx/
+```
 
-## What’s included
+`~/.agents/skills/` is also scanned as a read-only compatibility surface on MiMo Desktop.
 
-| Path | Purpose |
-| --- | --- |
-| `SKILL.md` | Main skill instructions (stage rules, presenter chrome, content rules) |
-| `STYLE_PRESETS.md` | Visual style presets |
-| `animation-patterns.md` | Motion / reveal patterns |
-| `html-template.md` | HTML deck template guidance |
-| `viewport-base.css` | Fixed-stage scaling CSS |
-| `scripts/extract-pptx.py` | Extract content from PowerPoint |
-| `scripts/export-pdf.sh` | Export slides to PDF |
-| `scripts/deploy.sh` | Deploy a deck folder / HTML file |
-| `bold-template-pack/selection-index.json` | Compact index of bold HTML templates |
+Each skill folder is self-contained (`SKILL.md` + scripts/references). Install them as sibling folders — do not nest one skill inside another.
 
-## Template pack attribution
+## Attribution
 
-`bold-template-pack` indexes templates from:
-
-**[zarazhangrui/beautiful-html-templates](https://github.com/zarazhangrui/beautiful-html-templates)**
-
-Those designs remain the work of their original authors. This skill only stores a selection index (`selection-index.json`) for choosing styles; full `templates/*/` design files are not redistributed in this repository by default.
-
-## Usage notes
-
-- Every deck uses a fixed **1920×1080** stage scaled to the viewport (do not reflow slides for mobile).
-- Classroom / live teaching decks should include the presenter chrome described in `SKILL.md` (notes, overview, timer, auto-dim toolbar).
-- Prefer local double-click HTML for classroom presentation; use deploy scripts / GitHub Pages for share URLs.
+`frontend-slides/bold-template-pack` indexes templates from [zarazhangrui/beautiful-html-templates](https://github.com/zarazhangrui/beautiful-html-templates). See that skill’s README for details.
 
 ## License
 
-Skill instructions and scripts in this repository are provided as-is for use with MiMo Desktop / MiMoCode. Template designs referenced via `selection-index.json` remain under their original repository’s license.
+Skill instructions and scripts are provided as-is for use with MiMo Desktop / MiMoCode. Referenced template designs remain under their original repository’s license.

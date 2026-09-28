@@ -3,6 +3,3 @@ Thumbs.db
 *.tmp
 *.log
 node_modules/
-__pycache__/
-*.pptx
-*.pdf
